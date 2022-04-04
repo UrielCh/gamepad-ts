@@ -4,6 +4,10 @@ Gamepad-ts is a heavily typed gamepad contol reciever.
 
 It will detect and connect an USB contoller, and send corresponding events.
 
+This code had been test with [DS4Windows](https://github.com/Ryochan7/DS4Windows)
+
+## usage
+
 On creation you hae to choose the gamepad model you want to see.
 
 - it you choose `nintendo`, the controller will emit events the following events:
@@ -92,9 +96,11 @@ On creation you hae to choose the gamepad model you want to see.
 ```
 
 Note:
-`X` `Y` `A` `B` are differently mapped on Nintendo and XBox, So it's inportant to choose the correct mapping.
 
-## usage
+- `X` `Y` `A` `B` are differently mapped on Nintendo and XBox, So it's inportant to choose the correct mapping.
+- Analogic pad and digital pad values are all [0-255] value, so any resting pad value will be [128, 128]
+
+## usage code
 
 ```typescript
 import GamePadController from './src/index';
@@ -116,3 +122,8 @@ ctrl.on('connected', () => console.log('Xbox controller connected'));
 ctrl.on('error', (err) => console.error(err));
 ctrl.start();
 ```
+
+## TODO
+
+- add calibration code to add new devices.
+- add Gyroscope.

@@ -19,6 +19,12 @@
     "url": "https://github.com/UrielCh/gamepad-ts/issues"
   },
   "homepage": "https://github.com/UrielCh/gamepad-ts#readme",
+  "keywords": [
+    "xbox",
+    "dualshock",
+    "gamepad",
+    "DS4Windows"
+  ],
   "dependencies": {
     "node-hid": "^2.1.1"
   },
