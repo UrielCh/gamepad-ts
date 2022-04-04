@@ -1,6 +1,6 @@
 # gamepad-ts
 
-Gamepad-ts is a heavily typed gamepad contol reciever.
+Gamepad-ts is a heavily typed Typescript gamepad contol library.
 
 It will detect and connect an USB contoller, and send corresponding events.
 
