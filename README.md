@@ -8,91 +8,101 @@ This code had been test with [DS4Windows](https://github.com/Ryochan7/DS4Windows
 
 ## usage
 
-On creation you hae to choose the gamepad model you want to see.
-
-- it you choose `nintendo`, the controller will emit events the following events:
+- it you want to use your gamepad as a `nintendo` contoler:
 
 ```typescript
-  LStick: (pos: [number, number]) => void; // Left stick moved event (x, y)
-  RStick: (pos: [number, number]) => void; // Right stick moved event (x, y)
-  dpad: (pos: [number, number]) => void; // Digital Pad change event (x, y)
-  LStickBt: (pressed: boolean) => void; // Left stick press
-  RStickBt: (pressed: boolean) => void; // Right stick press
+import { NintendoController } from 'gamepad-ts'
 
-  X: (pressed: boolean) => void; // nintendo / xbox X Button
-  A: (pressed: boolean) => void; // nintendo / xbox A Button
-  B: (pressed: boolean) => void; // nintendo / xbox B Button
-  Y: (pressed: boolean) => void; // nintendo / xbox Y Button
-  '+': (pressed: boolean) => void; // nintendo plus Button
-  '-': (pressed: boolean) => void; // nintendo less Button
-  L: (pressed: boolean) => void; // nintendo L Button
-  R: (pressed: boolean) => void; // nintendo R Button
-  ZL: (pressed: boolean) => void; // nintendo Left Z
-  ZR: (pressed: boolean) => void; // nintendo Rigth Z
+const pad = new NintendoController();
+
+pad.on('LStick', (pos: [number, number]) => {}); // Left stick moved event (x, y)
+pad.on('RStick', (pos: [number, number]) => {}); // Right stick moved event (x, y)
+pad.on('dpad', (pos: [number, number]) => {}); // Digital Pad change event (x, y)
+pad.on('LStickBt', (pressed: boolean) => {}); // Left stick press
+pad.on('RStickBt', (pressed: boolean) => {}); // Right stick press
+pad.on('X', (pressed: boolean) => {}); // nintendo / xbox X Button
+pad.on('A', (pressed: boolean) => {}); // nintendo / xbox A Button
+pad.on('B', (pressed: boolean) => {}); // nintendo / xbox B Button
+pad.on('Y', (pressed: boolean) => {}); // nintendo / xbox Y Button
+pad.on('+', (pressed: boolean) => {}); // nintendo plus Button
+pad.on('-', (pressed: boolean) => {}); // nintendo less Button
+pad.on('L', (pressed: boolean) => {}); // nintendo L Button
+pad.on('R', (pressed: boolean) => {}); // nintendo R Button
+pad.on('ZL', (pressed: boolean) => {}); // nintendo Left Z
+pad.on('ZR', (pressed: boolean) => {}); // nintendo Rigth Z
+
 ```
 
-- it you choose `xbox`, the controller will emit events the following events:
+- it you want to use your game pad as a `xbox` contoler"
 
 ```typescript
-  LStick: (pos: [number, number]) => void; // Left stick moved event (x, y)
-  RStick: (pos: [number, number]) => void; // Right stick moved event (x, y)
-  dpad: (pos: [number, number]) => void; // Digital Pad change event (x, y)
-  LStickBt: (pressed: boolean) => void; // Left stick press
-  RStickBt: (pressed: boolean) => void; // Right stick press
+import { XBoxController } from 'gamepad-ts'
 
-  X: (pressed: boolean) => void; // nintendo / xbox X Button
-  A: (pressed: boolean) => void; // nintendo / xbox A Button
-  B: (pressed: boolean) => void; // nintendo / xbox B Button
-  Y: (pressed: boolean) => void; // nintendo / xbox Y Button
-  start: (pressed: boolean) => void; // xbox start
-  back: (pressed: boolean) => void; // xbox back
-  LB: (pressed: boolean) => void; // xbox Left Bumper
-  RB: (pressed: boolean) => void; // xbox Right Bumper
-  LT: (pressed: boolean) => void; // xbox Left Trigger
-  RT: (pressed: boolean) => void; // xbox Rigth trigger
+const pad = new XBoxController();
+
+pad.on('LStick', (pos: [number, number]) => {}); // Left stick moved event (x, y)
+pad.on('RStick', (pos: [number, number]) => {}); // Right stick moved event (x, y)
+pad.on('dpad', (pos: [number, number]) => {}); // Digital Pad change event (x, y)
+pad.on('LStickBt', (pressed: boolean) => {}); // Left stick press
+pad.on('RStickBt', (pressed: boolean) => {}); // Right stick press
+pad.on('X', (pressed: boolean) => {}); // nintendo / xbox X Button
+pad.on('A', (pressed: boolean) => {}); // nintendo / xbox A Button
+pad.on('B', (pressed: boolean) => {}); // nintendo / xbox B Button
+pad.on('Y', (pressed: boolean) => {}); // nintendo / xbox Y Button
+pad.on('start', (pressed: boolean) => {}); // xbox start
+pad.on('back', (pressed: boolean) => {}); // xbox back
+pad.on('LB', (pressed: boolean) => {}); // xbox Left Bumper
+pad.on('RB', (pressed: boolean) => {}); // xbox Right Bumper
+pad.on('LT', (pressed: boolean) => {}); // xbox Left Trigger
+pad.on('RT', (pressed: boolean) => {}); // xbox Rigth trigger
 ```
 
-- it you choose `playstation`, the controller will emit events the following events:
+- it you want to use your game pad as a `playstation` contoler"
 
 ```typescript
-  LStick: (pos: [number, number]) => void; // Left stick moved event (x, y)
-  RStick: (pos: [number, number]) => void; // Right stick moved event (x, y)
-  dpad: (pos: [number, number]) => void; // Digital Pad change event (x, y)
-  LStickBt: (pressed: boolean) => void; // Left stick press
-  RStickBt: (pressed: boolean) => void; // Right stick press
+import { PlayStationController } from 'gamepad-ts'
 
-  square: (pressed: boolean) => void; // Playastation Button
-  cross: (pressed: boolean) => void; // Playastation Button
-  circle: (pressed: boolean) => void; // Playastation Button
-  triangle: (pressed: boolean) => void; // Playastation Button
-  share: (pressed: boolean) => void; // Playstation share
-  options: (pressed: boolean) => void; // Playstation options
-  L1: (pressed: boolean) => void; // playstaton Left Button
-  R1: (pressed: boolean) => void; // playstaton Right Button
-  L2: (pressed: boolean) => void; // playstaton Left trigger
-  R2: (pressed: boolean) => void; // playstaton Right trigger
+const pad = new PlayStationController();
+
+pad.on('LStick', (pos: [number, number]) => {}); // Left stick moved event (x, y)
+pad.on('RStick', (pos: [number, number]) => {}); // Right stick moved event (x, y)
+pad.on('dpad', (pos: [number, number]) => {}); // Digital Pad change event (x, y)
+pad.on('LStickBt', (pressed: boolean) => {}); // Left stick press
+pad.on('RStickBt', (pressed: boolean) => {}); // Right stick press
+pad.on('square', (pressed: boolean) => {}); // Playastation Button
+pad.on('cross', (pressed: boolean) => {}); // Playastation Button
+pad.on('circle', (pressed: boolean) => {}); // Playastation Button
+pad.on('triangle', (pressed: boolean) => {}); // Playastation Button
+pad.on('share', (pressed: boolean) => {}); // Playstation share
+pad.on('options', (pressed: boolean) => {}); // Playstation options
+pad.on('L1', (pressed: boolean) => {}); // playstaton Left Button
+pad.on('R1', (pressed: boolean) => {}); // playstaton Right Button
+pad.on('L2', (pressed: boolean) => {}); // playstaton Left trigger
+pad.on('R2', (pressed: boolean) => {}); // playstaton Right trigger
 ```
 
-- it you choose `generic`, the controller will emit events the following events:
+- it you want to use your game pad as a `generic` contoler"
 
 ```typescript
-  LStick: (pos: [number, number]) => void; // Left stick moved event (x, y)
-  RStick: (pos: [number, number]) => void; // Right stick moved event (x, y)
-  dpad: (pos: [number, number]) => void; // Digital Pad change event (x, y)
-  LStickBt: (pressed: boolean) => void; // Left stick press
-  RStickBt: (pressed: boolean) => void; // Right stick press
+import { GenericController } from 'gamepad-ts'
 
-  BL: (pressed: boolean) => void; // Button left
-  BD: (pressed: boolean) => void; // Button down
-  BR: (pressed: boolean) => void; // Button Rigth
-  BT: (pressed: boolean) => void; // Button Top
-  BMR: (pressed: boolean) => void; // Button Middle Rigth
-  BML: (pressed: boolean) => void; // Button Middle Left
+const pad = new GenericController();
 
-  L1: (pressed: boolean) => void; // generic / playstaton Left Bumper
-  R1: (pressed: boolean) => void; // generic / playstaton Right Bumper
-  L2: (pressed: boolean) => void; // generic / playstaton Left trigger
-  R2: (pressed: boolean) => void; // generic / playstaton Right trigger
+pad.on('LStick', (pos: [number, number]) => {}); // Left stick moved event (x, y)
+pad.on('RStick', (pos: [number, number]) => {}); // Right stick moved event (x, y)
+pad.on('dpad', (pos: [number, number]) => {}); // Digital Pad change event (x, y)
+pad.on('LStickBt', (pressed: boolean) => {}); // Left stick press
+pad.on('RStickBt', (pressed: boolean) => {}); // Right stick press
+pad.on('BL', (pressed: boolean) => {}); // Button left
+pad.on('BD', (pressed: boolean) => {}); // Button down
+pad.on('BR', (pressed: boolean) => {}); // Button Rigth
+pad.on('BT', (pressed: boolean) => {}); // Button Top
+pad.on('BMR', (pressed: boolean) => {}); // Button Middle Rigth
+pad.on('BML', (pressed: boolean) => {}); // Button Middle Left
+pad.on('L1', (pressed: boolean) => {}); // generic / playstaton Left Bumper
+pad.on('R1', (pressed: boolean) => {}); // generic / playstaton Right Bumper
+pad.on('L2', (pressed: boolean) => {}); // generic / playstaton Left trigger
+pad.on('R2', (pressed: boolean) => {}); // generic / playstaton Right trigger
 ```
 
 Note:
@@ -103,8 +113,8 @@ Note:
 ## usage code
 
 ```typescript
-import GamePadController from './src/index';
-const ctrl = new GamePadController({brand: 'playStation'});
+import PlayStationController from './src/index';
+const ctrl = new PlayStationController();
 /*
  * A,B,X,Y buttons
  */

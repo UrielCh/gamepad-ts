@@ -1,5 +1,5 @@
-import GamePadController from './src/index';
-const ctrl = new GamePadController({brand: 'playStation'});
+import {PlayStationController} from './src/index';
+const ctrl = new PlayStationController();
 /*
  * A,B,X,Y buttons
  */
