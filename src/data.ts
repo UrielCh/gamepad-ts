@@ -1,3 +1,5 @@
+import { Device } from "node-hid";
+
 export const xboxButton = ['X', 'A', 'B', 'Y', 'start', 'back', 'LStickBt', 'RStickBt', 'LB', 'RB', 'LT', 'RT'] as const;
 export const nintendoButton = ['Y', 'B', 'A', 'X', '+', '-', 'LStickBt', 'RStickBt', 'L', 'R', 'ZL', 'ZR'] as const;
 export const playStationButton = ['square', 'cross', 'circle', 'triangle', 'options', 'share', 'LStickBt', 'RStickBt', 'L1', 'R1', 'L2', 'R2'] as const;
@@ -32,16 +34,13 @@ export const ALL_BUTTONS: { [key: string]: ButtonsNames } = {
     // top buttons
     L1: { xbox: 'LB', nintendo: 'L', playStation: 'L1', generic: 'L1' },
     R1: { xbox: 'RB', nintendo: 'R', playStation: 'R1', generic: 'R1' },
-    L2: { xbox: 'LT', nintendo: 'ZL', playStation: 'L2', generic: 'L2' },
+    L2: { xbox: 'LT', nintendo: 'ZL', playStation: 'L2', generic: 'L2' }, // can be annalogic
     R2: { xbox: 'RT', nintendo: 'ZR', playStation: 'R2', generic: 'R2' },
 }
 
 export interface JoyPadMapping {
-    axes: {
-        LStick: [number, number],
-        RStick: [number, number],
-    }
-    buttons: Array<{ offset: number, mask: number, names: ButtonsNames }>
+    axes: Array<{offset: number, rest?: number, name: string, pos?: number}>,
+    buttons: Array<{ offset: number, mask: number, names: ButtonsNames }>,
     dpadOffset: number,
     dpadBitShift: number,
     dpad: { [key: number]: [number, number] },
@@ -50,10 +49,12 @@ export interface JoyPadMapping {
 
 export const dualShock: JoyPadMapping = {
     // 0-255 1 byte value
-    axes: {
-        LStick: [3, 4], // X, Y
-        RStick: [5, 6], // X, Y
-    },
+    axes: [
+        { offset: 3, rest: 0x80, name: 'LStick', pos: 0 },
+        { offset: 4, rest: 0x80, name: 'LStick', pos: 1 },
+        { offset: 5, rest: 0x80, name: 'RStick', pos: 0 },
+        { offset: 6, rest: 0x80, name: 'RStick', pos: 1 },
+    ],
     buttons: [
         { offset: 7, mask: 0x10, names: ALL_BUTTONS.BL }, // BT left
         { offset: 7, mask: 0x20, names: ALL_BUTTONS.BD }, // BT down
@@ -81,4 +82,20 @@ export const dualShock: JoyPadMapping = {
         0b0111: [0x00, 0xFF], // left  up 
         0b1000: [0x80, 0x80], // neutral
     }
+}
+
+export interface CommonEmissions {
+    error: (data: Error) => void;
+    scan: (sns: Array<Device>) => void;
+    connected: () => void;
+    // common events
+    LStick: (x: number, y: number) => void; // Left stick moved event (x, y)
+    RStick: (x: number, y: number) => void; // Right stick moved event (x, y)
+    dpad: (x: number, y: number) => void; // Digital Pad change event (x, y)
+
+    // common button names 
+    LStickBt: (pressed: boolean) => void; // Left stick press
+    RStickBt: (pressed: boolean) => void; // Right stick press
+    // raw data emited, usefull for debug
+    raw: (buffer: Buffer) => void;
 }

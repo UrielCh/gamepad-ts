@@ -1,34 +1,19 @@
-import { Device } from "node-hid";
+import { CommonEmissions } from "./data";
 import GamePadController, {GamePadOptions} from "./GamePadController";
 
-
-interface IEmissions {
-    error: (data: Error) => void;
-    scan: (sns: Array<Device>) => void;
-    // common events
-    LStick: (pos: [number, number]) => void; // Left stick moved event (x, y)
-    RStick: (pos: [number, number]) => void; // Right stick moved event (x, y)
-    dpad: (pos: [number, number]) => void; // Digital Pad change event (x, y)
-
-    // common button names 
-    LStickBt: (pressed: boolean) => void; // Left stick press
-    RStickBt: (pressed: boolean) => void; // Right stick press
-
+interface IEmissions extends CommonEmissions {
     // playstation / generic top buttons names 
-    L1: (pressed: boolean) => void; // generic / playstaton Left Bumper
-    R1: (pressed: boolean) => void; // generic / playstaton Right Bumper
-    L2: (pressed: boolean) => void; // generic / playstaton Left trigger
-    R2: (pressed: boolean) => void; // generic / playstaton Right trigger
+    L1: (pressed: number) => void; // generic / playstaton Left Bumper
+    R1: (pressed: number) => void; // generic / playstaton Right Bumper
+    L2: (pressed: number) => void; // generic / playstaton Left trigger
+    R2: (pressed: number) => void; // generic / playstaton Right trigger
 
-    square: (pressed: boolean) => void; // Playastation Button
-    cross: (pressed: boolean) => void; // Playastation Button
-    circle: (pressed: boolean) => void; // Playastation Button
-    triangle: (pressed: boolean) => void; // Playastation Button
-    share: (pressed: boolean) => void; // Playstation share
-    options: (pressed: boolean) => void; // Playstation options
-
-    //
-    connected: () => void;
+    square: (pressed: number) => void; // Playastation Button
+    cross: (pressed: number) => void; // Playastation Button
+    circle: (pressed: number) => void; // Playastation Button
+    triangle: (pressed: number) => void; // Playastation Button
+    share: (pressed: number) => void; // Playstation share
+    options: (pressed: number) => void; // Playstation options
 }
 
 
