@@ -1,6 +1,6 @@
 import EventEmitter from 'events';
 import HID from 'node-hid';
-import { dualShock, ContollerBrand, JoyPadMapping } from './data';
+import { DualShockBT, ContollerBrand, JoyPadMapping } from './data';
 import { promisify } from 'node:util';
 
 export interface GamePadOptions {
@@ -37,7 +37,7 @@ export default class GamePadController extends EventEmitter {
     this.vendorId = options.vendorId;
     this.productId = options.productId;
     this.brand = options.brand || 'xbox';
-    this.mapping = options.mapping || dualShock;
+    this.mapping = options.mapping || DualShockBT;
     this.buttonStats = new Array(this.mapping.buttons.length).fill(false);
     this.axisStat = {};
     for (const axis of this.mapping.axes) {

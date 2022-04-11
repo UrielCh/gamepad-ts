@@ -47,7 +47,7 @@ export interface JoyPadMapping {
 
 }
 
-export const dualShock: JoyPadMapping = {
+export const DualShockBT: JoyPadMapping = {
     // 0-255 1 byte value
     axes: [
         { offset: 3, rest: 0x80, name: 'LStick', pos: 0 },
@@ -81,6 +81,118 @@ export const dualShock: JoyPadMapping = {
         0b0110: [0x00, 0x80], // left
         0b0111: [0x00, 0xFF], // left  up 
         0b1000: [0x80, 0x80], // neutral
+    }
+}
+
+
+// 64 Byle length
+/**
+ *  'Sony Interactive Entertainment',
+ *   product: 'Wireless Controller',
+ */
+ export const dualShockUSB: JoyPadMapping = {
+    // 0-255 1 byte value
+    axes: [
+        { offset: 1, name: 'LStick', pos: 0 },
+        { offset: 2, name: 'LStick', pos: 1 },
+        { offset: 3, name: 'RStick', pos: 0 },
+        { offset: 4, name: 'RStick', pos: 1 },
+        { offset: 8, name: 'L2', pos: 0 },
+        { offset: 9, name: 'R2', pos: 0 },
+    ],
+    buttons: [
+        { offset: 5, mask: 0x10, names: ALL_BUTTONS.BL }, // BT left
+        { offset: 5, mask: 0x20, names: ALL_BUTTONS.BD }, // BT down
+        { offset: 5, mask: 0x40, names: ALL_BUTTONS.BR }, // BT right
+        { offset: 5, mask: 0x80, names: ALL_BUTTONS.BT }, // BT top
+
+        { offset: 6, mask: 0x10, names: ALL_BUTTONS.BML }, // minus
+        { offset: 6, mask: 0x20, names: ALL_BUTTONS.BMR }, // plus
+        { offset: 6, mask: 0x01, names: ALL_BUTTONS.L1 },
+        { offset: 6, mask: 0x02, names: ALL_BUTTONS.R1 },
+        { offset: 6, mask: 0x40, names: ALL_BUTTONS.LStickBt }, // ZL
+        { offset: 6, mask: 0x80, names: ALL_BUTTONS.RStickBt }, // ZR
+        { offset: 6, mask: 0x04, names: ALL_BUTTONS.L2 },
+        { offset: 6, mask: 0x08, names: ALL_BUTTONS.R2 },
+    ],
+    dpadOffset: 5,
+    dpadBitShift: 0,
+    dpad: {
+        0b0000: [0x80, 0xFF], //       up
+        0b0001: [0xFF, 0xFF], // right up
+        0b0010: [0xFF, 0x80], // right
+        0b0011: [0xFF, 0x00], // right down
+        0b0100: [0x80, 0x00], //       down
+        0b0101: [0x00, 0x00], // left  down 
+        0b0110: [0x00, 0x80], // left
+        0b0111: [0x00, 0xFF], // left  up 
+        0b1000: [0x80, 0x80], // neutral
+    }
+    //  offset: 7 => timmer +4
+    //  offset: 19 => noise
+    //  offset: 20 => roll
+    //  offset: 21 => noise
+    //  offset: 22 => roll
+    //  offset: 23 => roll little part
+    //  offset: 24 => roll
+    //  offset: 24 => roll
+    //  offset: 25--29 RAS
+    //  offset: 30  0xF0 => flg micro
+    //  offset: 31--33 RAS
+    //  offset: 34 => time town
+    //  offset: 35 => touch ID
+    //  offset: 36 => X position
+    //  offset: 37 => Y position
+    //  offset: 38 => Y position
+    //  offset: 39 => 2nd finger
+    //  offset: 40 => 2nd finger
+    //  offset: 41 => 2nd finger
+    //  offset: 42 => 2nd finger
+    // RAS ... END
+}
+
+
+
+export const dualShockUSBLT: JoyPadMapping = {
+    // 0-255 1 byte value
+    axes: [
+        { offset: 1, name: 'LStick', pos: 0 },
+        { offset: 3, name: 'LStick', pos: 1 },
+        { offset: 5, name: 'RStick', pos: 0 },
+        { offset: 7, name: 'RStick', pos: 1 },
+        { offset: 8, name: 'L1' }, // ZR
+        { offset: 9, name: 'L2' }, // ZL
+    ],
+    buttons: [
+        { offset: 10, mask: 0x04, names: ALL_BUTTONS.BL }, // BT left
+        { offset: 10, mask: 0x01, names: ALL_BUTTONS.BD }, // BT down
+        { offset: 10, mask: 0x02, names: ALL_BUTTONS.BR }, // BT right
+        { offset: 10, mask: 0x08, names: ALL_BUTTONS.BT }, // BT top
+
+        { offset: 10, mask: 0x40, names: ALL_BUTTONS.BML }, // minus
+        { offset: 10, mask: 0x80, names: ALL_BUTTONS.BMR }, // plus
+        
+        { offset: 10, mask: 0x10, names: ALL_BUTTONS.L1 },
+        { offset: 10, mask: 0x20, names: ALL_BUTTONS.R1 },
+
+        { offset: 11, mask: 0x01, names: ALL_BUTTONS.LStickBt }, // ZL
+        { offset: 11, mask: 0x02, names: ALL_BUTTONS.RStickBt }, // ZR
+
+        // { offset: 8, mask: 0x04, names: ALL_BUTTONS.L2 },
+        // { offset: 8, mask: 0x08, names: ALL_BUTTONS.R2 },
+    ],
+    dpadOffset: 11,
+    dpadBitShift: 2,
+    dpad: {
+        0b0000: [0x80, 0x80], // neutral
+        0b0001: [0x80, 0xFF], //       up
+        0b0010: [0xFF, 0xFF], // right up
+        0b0011: [0xFF, 0x80], // right
+        0b0100: [0xFF, 0x00], // right down
+        0b0101: [0x80, 0x00], //       down
+        0b0110: [0x00, 0x00], // left  down 
+        0b0111: [0x00, 0x80], // left
+        0b1000: [0x00, 0xFF], // left  up
     }
 }
 
